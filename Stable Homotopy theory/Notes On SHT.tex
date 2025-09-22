@@ -130,4 +130,36 @@ NOw let's talk about homotopy theory.
   \[fg\sim 1_Y \text{ and } gf\sim 1_X,\]
   where \(\sim\) means that there is a homotopy of spectra.
 \end{Def}
+And stable homotopy theory will focus, as the names suggests, on stable equivalences. 
+Notice that if \(f\) is a homotopy equivalence, then it is a level equivalence. And if \(f\) is a level equivalence, then it is a stable equivalence.\\
+
+We now have the language to better express the idea that the stable homotopy groups are meant to capture the asymptotical homotopy behaviour of spectra.
+
+\begin{Def}
+  Let \(X=(X_n)\) be a spectrum, and \(k\geq 0\). We define the \(k\) eventual spectrum, \(X^k\) levelwise as 
+  \[X^k_n=\begin{cases}
+    X_n,\text{ if }n\geq k;\\
+    \ast,\text{ if } 0\leq n < k.
+  \end{cases}\]
+\end{Def}
+\begin{prop}
+  Let \(X\) be a spectrum, and \(k\geq 0\). The inclusion \(X^k\subseteq X\) is a stable equivalence.
+\end{prop}
+\begin{proof}
+  Let's begin by proving that \(\pi_m(X^k)=\pi_m(X)\) for all \(m\in\mathbb{Z}\). Indeed, for each \(n\geq 0\), we have maps
+  \[\pi_{m+n}(X_n)\to\pi_m(X),\]
+  that factor any map leaving \(\pi_{m+n}(X_n)\). And, as 
+  \[\pi_{m+n'}(X^k_{n'})=\pi_{m+n'}(\ast)=\ast, n'<k\]
+  any map leaving \(\pi_{m+n'}(X^k_n)\) factor trough 
+  \[\pi_{m+n'}(X^k_{n'})\to\pi_m(X).\]
+  That is, \(\pi_m(X)\) is the colimit of the sequence that defines \(\pi_m(X^k)\), and therefore they are isomorphic. 
+  NOw let's look at the inclusion 
+  \[\iota:X^k\to X.\]
+  It is given levelwise as
+  \[\iota_n=\begin{cases}
+    0,\text{ if }n<k;\\
+    1_{X_n},\text{ if } n\geq k.
+  \end{cases}\]
+  so that it induces the identity isomorphism, or the \(0\) morphism in each homotopy group. By the same reasoning about the \(0\) map, the identity on \(\pi_m(X)\) is the desired colimit, and therefore the inclusion is a stable equivalence.
+\end{proof}
 \end{document}
