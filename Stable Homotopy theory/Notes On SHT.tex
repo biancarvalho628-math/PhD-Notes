@@ -36,7 +36,7 @@
 \begin{Def}[The Spectra Category]
     A \textit{spectrum} \(X\) is a family of based topoogical spaces \(\{X_n\:n\geq 0\}\) together with structure maps
     \[\varepsilon_n:\Sigma X_n\to X_{n+1},\]
-    in which \(\Sigma X\) is the based suspension functor.
+    in which \(\Sigma \) is the based suspension functor.
 
     A map between to spectra, \(f:X\to Y\), is a family of maps of based topological spaces, \(\{f_n:X_n\to Y_n:n\geq 0\}\), that agrees with the structure maps, that is, for each \(n\) we have a commutative square:
     \begin{equation*}
@@ -63,13 +63,14 @@ Adding the above information together, for each \(k\in\mathbb{Z}\), we get a seq
 \end{equation*}
 The colimit of this sequence will be called the \(k\)-th homotopy group of the spectrum \(X\), and denoted \(\pi_k(X)\).\\
 The book asserts that for \(k<0\) the sequence is defined from \(n\geq|k|\). I would correct it as such: 
-{\color{purple} The sequence is defined for \(n\geq 2-k\), for in that case all groups are abelian groups}. 
+{\color{purple} The sequence is defined for \(n\geq \max\{2-k,0\}\), for in that case all groups are abelian groups}. 
 There is no problem in not starting at \(0\) as this definition is meant to capture the asymptotical homotopical behavior. Would this be the same as taking the homotopy colimit of
-\begin{equation*}
+\begin{equation}
+  \label{hip1}
   \begin{tikzcd}
     \cdots\arrow{r}& X_n \arrow{r}{\Sigma}&\Sigma X_n\arrow{r}{\varepsilon}&X_{n+1}\arrow{r}&\cdots
   \end{tikzcd}
-\end{equation*}
+\end{equation}
 If we were working with CW-complexes, this would be the moment we would discuss cells, but as we are not, we approximate this but a discussion of "elements".
 \begin{Def}
   Given \(X=(X_n:n\geq 0)\) a spectrum, a \(k\) dimensional element of \(X\) is the set of maps
@@ -89,4 +90,5 @@ If we were working with CW-complexes, this would be the moment we would discuss 
     with structure maps the canonical homeomorphisms
     \[X\wedge S^n\wedge S^1 \cong X\wedge S^{n+1}.\]
   \end{Def}
+  
 \end{document}
