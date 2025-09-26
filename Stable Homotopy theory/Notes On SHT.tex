@@ -28,7 +28,13 @@
     \newcommand{\Ab}{\textbf{\text{Ab}}}
     %topological operators
     \newcommand{\Susp}{\Sigma^{\infty}}
+    \newcommand{\susp}{\mathbf{\Sigma}}
     \newcommand{\Cyl}{\text{Cyl}}
+    \newcommand{\Map}{\text{Map}}
+    \newcommand{\lspec}{\mathbf{\Omega}}
+    %important maps
+    \newcommand{\struc}{\varepsilon}
+    \newcommand{\astruc}{\bar{\varepsilon}}
 \title{Notes on SHT}
 \author{Bianca Carvalho de Oliveira}
 \date{\today}
@@ -37,20 +43,20 @@
 \section{Spectra}
 \begin{Def}[The Spectra Category]
     A \textit{spectrum} \(X\) is a family of based topoogical spaces \(\{X_n\:n\geq 0\}\) together with structure maps
-    \[\varepsilon_n:\Sigma X_n\to X_{n+1},\]
+    \[\struc_n:\Sigma X_n\to X_{n+1},\]
     in which \(\Sigma \) is the based suspension functor.
 
     A map between to spectra, \(f:X\to Y\), is a family of maps of based topological spaces, \(\{f_n:X_n\to Y_n:n\geq 0\}\), that agrees with the structure maps, that is, for each \(n\) we have a commutative square:
     \begin{equation*}
       \begin{tikzcd}
-        \Sigma X_n \arrow{r}{\varepsilon_n}\arrow{d}{f_n}& X_{n+1}\arrow{d}{f_{n+1}}\\
-        \Sigma Y_n \arrow{r}{\varepsilon_n}& Y_{n+1}
+        \Sigma X_n \arrow{r}{\struc_n}\arrow{d}{f_n}& X_{n+1}\arrow{d}{f_{n+1}}\\
+        \Sigma Y_n \arrow{r}{\struc_n}& Y_{n+1}
       \end{tikzcd}.
     \end{equation*}
     Having objects and maps we can define a category of prespectra, which we will denote as \(\pSp\). 
 \end{Def}
 Let \(X=(X_n:n\geq 0)\) be a spectrum. For each, \(n\) we have homotopy groups, \(\pi_k(X_n)\). Notice that the structure maps induce a map
-\[\varepsilon_{n\ast}:\pi_k(\Sigma X_n)\to\pi_k(X_{n+1}),\]
+\[\struc_{n\ast}:\pi_k(\Sigma X_n)\to\pi_k(X_{n+1}),\]
 and by the definition of suspension, for each map
 \[\alpha:S^k\to X_n,\]
 we have a suspension
@@ -60,8 +66,8 @@ Therefore, \(\Sigma\) induce maps
 Adding the above information together, for each \(k\in\mathbb{Z}\), we get a sequence
 \begin{equation*}
     \begin{tikzcd}
-        \pi_k(X_0)\arrow{r}&\cdots\arrow{r}&\pi_{k+n}(X_n)\arrow{r}{\Sigma^\ast}&\pi_{k+n+1}(\Sigma X_n)\arrow{r}{\varepsilon_{n\ast}}&\  \\
-        \ &\ &\ \arrow{r}{\varepsilon_{n\ast}}&\ \pi_{k+n+1}(X_{n+1})\arrow{r}&\cdots
+        \pi_k(X_0)\arrow{r}&\cdots\arrow{r}&\pi_{k+n}(X_n)\arrow{r}{\Sigma^\ast}&\pi_{k+n+1}(\Sigma X_n)\arrow{r}{\struc_{n\ast}}&\  \\
+        \ &\ &\ \arrow{r}{\struc_{n\ast}}&\ \pi_{k+n+1}(X_{n+1})\arrow{r}&\cdots
     \end{tikzcd}
 \end{equation*}
 The colimit of this sequence will be called the \(k\)-th homotopy group of the spectrum \(X\), and denoted \(\pi_k(X)\).\\
@@ -71,7 +77,7 @@ There is no problem in not starting at \(0\) as this definition is meant to capt
 \begin{equation}
   \label{hip1}
   \begin{tikzcd}
-    \cdots\arrow{r}& X_n \arrow{r}{\Sigma}&\Sigma X_n\arrow{r}{\varepsilon}&X_{n+1}\arrow{r}&\cdots
+    \cdots\arrow{r}& X_n \arrow{r}{\Sigma}&\Sigma X_n\arrow{r}{\struc}&X_{n+1}\arrow{r}&\cdots
   \end{tikzcd}
 \end{equation}
 \begin{rem}
@@ -112,8 +118,8 @@ NOw let's talk about homotopy theory.
   Let \(X=(X_n),\ Y=(Y_n)\) be two spectra, and \(f,g:\begin{tikzcd}[column sep =0.9em] X\arrow[shift left=1, shorten >=1.5]{r}\arrow[shift right=1, shorten >=1.5]{r}& Y \end{tikzcd}\) two maps of spectra. Let \(\Cyl(X)\) be the spectrum defined levelwise as 
   \[\Cyl(X)_n=X_n\wedge I_{+},\]
   in which the structure maps are
-  \[\varepsilon'_n=\varepsilon_n\wedge 1_{I_{+}},\]
-  \(\varepsilon_n\) being the structure maps of \(X\).\\
+  \[\struc'_n=\struc_n\wedge 1_{I_{+}},\]
+  \(\struc_n\) being the structure maps of \(X\).\\
 
   We say that \(f\) and \(g\) are homotopic, and write \(f\sim g\), if there is a map of spectra
   \[h:\Cyl(X)\to Y\]
@@ -161,5 +167,57 @@ We now have the language to better express the idea that the stable homotopy gro
     1_{X_n},\text{ if } n\geq k.
   \end{cases}\]
   so that it induces the identity isomorphism, or the \(0\) morphism in each homotopy group. By the same reasoning about the \(0\) map, the identity on \(\pi_m(X)\) is the desired colimit, and therefore the inclusion is a stable equivalence.
+\end{proof}
+\section{Operations on Spectra}
+If we want to work in the category of spectra define above, we should be able to define some operations in it. 
+\begin{Def}[Coproduct of spectra]
+  Let \(X=(X_n)\) and \(Y=(Y_n)\) be two spectra. The \textit{coproduct} of \(X\) and \(Y\), \(X\vee Y\), is defined levelwise as
+  \[(X\vee Y)_n=X_n\vee Y_n,\]
+  with structure maps the canonical homeomorphisms
+  \[(X_n\vee Y_n)\wedge S^1\cong (X_n\wedge S^1)\vee (Y_n\wedge S^1)\xrightarrow{\struc_n\vee \struc'_n} X_{n+1}\vee Y_{n+1},\]
+  where \(\struc_n\) and \(\struc'_n\) are the structure maps of \(X\) and \(Y\), respectively.
+\end{Def}
+Notice that the first map is an isomorphism because the suspension functor is a left adjoint, and as such commutes with colimts. Dually, we can define the product of spectra.
+\begin{Def}[Product of spectra]
+  Let \(X=(X_n)\) and \(Y=(Y_n)\) be two spectra. The \textit{product} of \(X\) and \(Y\), \(X\times Y\), is defined levelwise as
+  \[(X\times Y)_n=X_n\times Y_n,\]
+  with structure maps the canonical homeomorphisms
+  \[(X_n\times Y_n)\wedge S^1\longrightarrow (X_n\wedge S^1)\times (Y_n\wedge S^1)\xrightarrow{\struc_n\times \struc'_n} X_{n+1}\times Y_{n+1},\]
+  where \(\struc_n\) and \(\struc'_n\) are the structure maps of \(X\) and \(Y\), respectively.
+  In this case, we hae that the adjoint structure map is 
+  \[X_n\times Y_n\xrightarrow{\astruc_n\times\astruc'_n}\Omega X_{n+1}\times\Omega Y_{n+1}\xrightarrow{\cong}\Omega(X_{n+1}\times Y_{n+1}).\]
+\end{Def}
+\begin{rem}
+  When working with colimits it's more natural to use the normal structure map, or suspension bonding map, while when working with limits it's more natural to use the adjoint structure map, or loop bonding map.
+\end{rem}
+Another useful pair of constructions are the \textit{smash product} and the \textit{function spectrum}.
+\begin{Def}[Smash product]
+  Let \(X=(X_n)\) be a spectrum, and \(K\) be a based topological space. The smash product of \(K\), and\(X\) is the spectra, \(K\wedge X\), defined levelwise as 
+  \[(K\wedge X)_n=K\wedge X_n,\]
+  and the structure maps are
+  \[K\wedge X\xrightarrow{1_K\wedge\struc_n}K\wedge X_{n+1}.\]
+  One example of such spectrum is the reduced suspension spectrum of \(X\), \(\susp X=S^1\wedge X\).  
+\end{Def}
+\begin{rem}
+  Now the motivation to define the suspension functor by applying \(S^1\) on the right becomes clear. If we were to apply it on the left we would need to shuffle the two spheres before applying the structure maps. But the real condition is that the two spheres are on different sides, and the choice of which sphere is in each side is a question of {\color{red} preference}.
+\end{rem}
+\begin{Def}[Functions spectrum]
+  Let \(X=(X_n)\) be a spectrum, and \(K\) be a based topological space. The function spectrum from \(K\) to \(X\), \(F(K,X)\), is defined levelwise as
+  \[F(K,X)_n= \Map_\ast(K,X_n),\]
+  the space of based maps from \(K\) to \(X_n\). The structure maps are given by the adjunction
+  \[\Map_\ast(K,X_n)\xrightarrow{\Map_\ast(K,\astruc_n)}\Map_\ast(K,\Omega X_{n+1})\xrightarrow{\cong}\Omega \Map_\ast(K,X_{n+1}).\]
+  One example of such spectrum is the loop spectrum of \(X\), \(\lspec X=F(S^1,X)\).
+\end{Def}
+\begin{rem}
+  In this case we wil need to use a shuffling map to define the adjoint structure map, as the spheres appear in reverse order in 
+  \[\Map_\ast(S^1,\Map_\ast(S^1,X_{n+1})).\] 
+\end{rem}
+\begin{prop}
+  The operations \(K\wedge\_\), and \(F(K,\_)\) are adjoint.  
+\end{prop}
+\begin{proof}
+  {\color{red} this seems to depend on a definition of mapping spectrum that I don't have here.}
+  Indeed, we have and adjunction at each level. We have to show that the maps  
+
 \end{proof}
 \end{document}
