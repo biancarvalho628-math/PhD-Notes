@@ -25,6 +25,7 @@
     \newcommand{\GT}{G\Top}
     \newcommand{\GTp}{\GT_{\ast}}
     \newcommand{\pSp}{\textbf{\text{pSp}}}
+    \newcommand{\Sp}{\textbf{\text{Sp}}}
     \newcommand{\Ab}{\textbf{\text{Ab}}}
     %topological operators
     \newcommand{\Susp}{\Sigma^{\infty}}
@@ -216,8 +217,76 @@ Another useful pair of constructions are the \textit{smash product} and the \tex
   The operations \(K\wedge\_\), and \(F(K,\_)\) are adjoint.  
 \end{prop}
 \begin{proof}
-  {\color{red} this seems to depend on a definition of mapping spectrum that I don't have here.}
-  Indeed, we have and adjunction at each level. We have to show that the maps  
+  Indeed, we have an adjunction at each level. We have to show that at the collection of maps in the natural isomorphism is a map of spectra, i.e. If
+  \[\Phi_n:\Top_\ast(K\wedge X_n,Y_n)\to \Top_\ast(X_n,F(K,Y_n)),\]
+  is the isomorphism, so, given \(f:K\wedge X_n\to Y_n\), a map of spectra, \(\Phi_n(f):X_n\to F(K,Y_n)\) is a map of spectra. That is, we need to show that 
+\begin{equation*}
+    \begin{tikzcd}
+      X_n\arrow{rr}{\Phi_n(f)}\arrow{d}{\astruc_n}&\ & F(K,Y_n)\arrow{d}{\astruc_{F,n}}\\
+      \Omega X_{n+1}\arrow{rr}{\Omega\Phi_{n+1}(f)}&\ & \Omega F(K,Y_{n+1})
+    \end{tikzcd}
+\end{equation*}
+commutes. But indeed, in the leftmost path we have the map
+\begin{align*}
+  X_n &\to F(K,\Omega Y_{n+1})\cong \Omega F(K,Y_{n+1}) \\
+  x &\mapsto \astruc_F(\varphi_{f,x}):K\to \Omega Y_{n+1}\\
+  &\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k \mapsto \astruc_{Y} (f(k,x)),
+\end{align*}
+and the rightmost path is 
+\begin{align*}
+  X_n &\to \Omega F(K,Y_n)\cong \Omega F(K,Y_{n+1}) \\
+  x &\mapsto \varphi_{f,\astruc(x)}:K\to \Omega Y_{n+1}\\
+  &\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k\mapsto f(k,\astruc(x)).
+\end{align*}
+Therefore the diagram commutes, and the operations are adjoint.
 
+\section{The smash product of spectra}
+In this section we discuss the smash product of spectra. It is important as it gives the adequate category of spectra a symetric monoidal structure, allowing us to define ring spectra, module spectra and (co)homology  over spectra. But to begin we will describe what we want the smash product to be, without defining it, and deducing some properties from this.
+\begin{Def}[The Smash product]
+  Let us describe what we want the smash product of spectra to be. 
+  \begin{enumerate}
+    \item We have a category of spectra, \(\Sp\), not necessarily the same as \(\pSp\). In this category we have all the operaations we defined for the category \(\pSp\). Lastly, we have n equivalence of categories
+    \[\text{Ho}\pSp\simeq\text{Ho}\Sp;\]
+    \item \(\Sp\) is a simmetric monoidal category. The tensor operation is called \textit{smash product}, and denoted \(\wedge\);
+    \item The unit in \(\Sp\) is the sphere spectrum, \(\mathbb{S}=\Susp S^0\);
+    \item We have an isomorphism
+    \[F_dA\wedge F_eB\cong F_{d+e}(A\wedge B);\]
+    \item The smash product preserves cellular spectra, and all the stable equivalences between them;
+  \end{enumerate}
+\end{Def} 
+\begin{rem}
+  The is a number of remarks to be made about this definition.
+  \begin{enumerate}
+    \item smashing a spectrum with a suspension spectrum is given by the smash with the base space, i.e.:
+    \[\Susp K\wedge X\cong K\wedge X,\]
+    and we also have That
+    \[\Susp X\wedge \Susp Y\cong \Susp(X\wedge Y);\]
+    \item By item \(4\) we have that the smash product of cellular spectra is a cellular spectrum;
+    \item By item \(6\) it is posible to show that we can define a smash product in \(\text{Ho}\Sp\), with
+    \[X\wedge^{\mathbb{L}}Y=QX\wedge QY,\]
+    on which \(QA\) is the cellular replacement of \(A\). This is the derived smash product;
+  \end{enumerate}
+\end{rem}
+\begin{Def}[Ring Spectrum]
+  A \textit{ring spectrum} is a monoid object in \((\Sp,\wedge, \mathbb{S})\), i.e. a spectrum \(R\) together with maps
+  \[\mu:R\wedge R\to R,\]
+  and
+  \[\eta:\mathbb{S}\to R,\]
+  such that the following diagrams commute:
+  \begin{equation*}
+    \begin{tikzcd}
+      R\wedge R\wedge R\arrow{r}{\mu\wedge 1_R}\arrow{d}{1_R\wedge \mu}& R\wedge R\arrow{d}{\mu}\\
+      R\wedge R\arrow{r}{\mu}& R
+    \end{tikzcd},
+  \end{equation*}
+  and
+  \begin{equation*}
+    \begin{tikzcd}
+      R\cong \mathbb{S}\wedge R\arrow{r}{\eta\wedge 1_R}\arrow{dr}[swap]{1_R}& R\wedge R\arrow{d}{\mu}&R\cong R\wedge \mathbb{S}\arrow{l}[swap]{1_R\wedge \eta}\arrow{dl}{1_R}\\
+      &R&
+    \end{tikzcd}.
+  \end{equation*}
+
+\end{Def}
 \end{proof}
 \end{document}
