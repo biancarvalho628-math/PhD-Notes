@@ -27,6 +27,7 @@
     \newcommand{\pSp}{\textbf{\text{pSp}}}
     \newcommand{\Sp}{\textbf{\text{Sp}}}
     \newcommand{\Ab}{\textbf{\text{Ab}}}
+    \newcommand{\Hom}{\text{Hom}}
     %topological operators
     \newcommand{\Susp}{\Sigma^{\infty}}
     \newcommand{\susp}{\mathbf{\Sigma}}
@@ -227,19 +228,40 @@ Another useful pair of constructions are the \textit{smash product} and the \tex
     \end{tikzcd}
 \end{equation*}
 commutes. But indeed, in the leftmost path we have the map
-\begin{align*}
-  X_n &\to F(K,\Omega Y_{n+1})\cong \Omega F(K,Y_{n+1}) \\
-  x &\mapsto \astruc_F(\varphi_{f,x}):K\to \Omega Y_{n+1}\\
-  &\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k \mapsto \astruc_{Y} (f(k,x)),
-\end{align*}
-and the rightmost path is 
-\begin{align*}
-  X_n &\to \Omega F(K,Y_n)\cong \Omega F(K,Y_{n+1}) \\
-  x &\mapsto \varphi_{f,\astruc(x)}:K\to \Omega Y_{n+1}\\
-  &\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k\mapsto f(k,\astruc(x)).
-\end{align*}
-Therefore the diagram commutes, and the operations are adjoint.
+\[\astruc_F\bar{f}_{n}\]
+%\begin{align*}
+ % X_n &\to F(K,\Omega Y_{n+1})\cong \Omega F(K,Y_{n+1}) \\
+  %x &\mapsto \astruc_F(\varphi_{f,x}):K\to \Omega Y_{n+1}\\
+  %&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k \mapsto \astruc_{Y} (f(k,x)),
+%\end{align*}
+and the rightmost path is
+\[\Omega\bar{f}_{n+1}\astruc_X.\]
+What we know to be true is that 
+\[f_{n+1}\struc_K=\struc_Y\Sigma f_{n}\]. Let us look at the adjunctions we have.Fisrt,, we know that 
+\[\Hom(K\wedge X_n, Y_n)\cong \Hom(X_n,\Map(K,Y_n)): f_n\leftrightarrow\bar{f}_n.\]
+By naturality on the second variable,and using the map\(\astruc_Y:Y_n\to\Omega Y_{n+1}\), we have
+\[\Hom(K\wedge X_n,\Omega Y_{n+1})\cong\Hom(X_n,\Map(K,\Omega Y_{n+1})):\astruc_Yf_n\leftrightarrow\astruc_F\bar{f}_n,\]
+beacause \(\astruc_F=\Map(K,\astruc_Y)\). Now, using the \(\Omega-\Sigma\)adjunction:
+\[\Hom(Y_n,\Omega Y_{n+1})\cong \Hom(\Sigma Y_n,Y_{n+1}):\astruc_Y\leftrightarrow \struc_Y,\]
+using the naturality now in the firstvariable,  with the map \(f_n:K\wedge X_n\to Y_n\),we obtain
+\[\Hom(K\wedge X_n,\Omega\cong \Hom(\Sigma) K\wedge X_n,Y_{n+1}): \astruc_Yf_n\leftrightarrow \struc_Y\Sigma f_n.\]
+This means that the adjoint of \(\astruc_F\bar{f}_n\)is \(\struc_Y\Sigma f_n\).But, we know that \(\struc_Y\Sigma f_n=f_{n+1}\struc_K\). lets see what is its adjoint. First, we have
+\[\Hom(K\wedge X_{n+1},Y_{n+1})\cong\Hom(X_{n+1},\Map(K,Y_{n+1})):f_{n+1}\leftrightarrow\bar{f}_{n+1},\]
+and by naturality in the first variable, using the map \(\struc_X:\Sigma X_n\to X_{n+1}\), we have
+\[\Hom(\Sigma X_n,\Map(K,Y_{n+1}))\cong\Hom(\Sigma K\wedge X_n,Y_{n+1}): \bar{f}_{n+1}\struc_X\leftrightarrow f_{n+1}\struc_K,\]
+since \(\struc_K=1_k\wedge\struc_X\). Now, using the \(\Omega-\Sigma\) adjunction again, we have
+\[\Hom(\Sigma X_n,X_{n+1})\cong\Hom(X_n,\Omega X_{n+1}):\struc_X\leftrightarrow\astruc_X,\]
+and by naturality in the second variable, using the map \(\bar{f}_{n+1}:X_{n+1}\to \Map(K,Y_{n+1})\), we have 
+\[\Hom(\Sigma X_n,\Map(K,Y_{n+1}))\cong\Hom(X_n,\Map(K,\Omega Y_{n+1})): \bar{f}_{n+1}\astruc_X\leftrightarrow\Omega\bar{f}_{n+1}\astruc_X.\]
+Which means that the adjoint of \(f_{n+1}\struc_K\) is \(\Omega\bar{f}_{n+1}\astruc_X\). \\
+%\begin{align*}
+%  X_n &\to \Omega F(K,Y_n)\cong \Omega F(K,Y_{n+1}) \\
+%  x &\mapsto \varphi_{f,\astruc(x)}:K\to \Omega Y_{n+1}\\
+%  &\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k\mapsto f(k,\astruc(x)).
+%\end{align*}
+Therefore the original diagram commutes, and the operations are adjoint.
 
+\end{proof}
 \section{The smash product of spectra}
 In this section we discuss the smash product of spectra. It is important as it gives the adequate category of spectra a symetric monoidal structure, allowing us to define ring spectra, module spectra and (co)homology  over spectra. But to begin we will describe what we want the smash product to be, without defining it, and deducing some properties from this.
 \begin{Def}[The Smash product]
@@ -288,5 +310,4 @@ In this section we discuss the smash product of spectra. It is important as it g
   \end{equation*}
 
 \end{Def}
-\end{proof}
 \end{document}
